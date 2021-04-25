@@ -25,14 +25,14 @@ axiosInstance.interceptors.response.use(
         if (typeof error.response === 'undefined') {
             alert(
                 'A server/ network error occurred' +
-                "looks like CORS" +
+                "looks like CORS!  " +
                 "Sorry"
             )
             return Promise.reject(error);
         }
         if (
             error.response.status === 401 &&
-            orginalRequest.url === baseURL + 'token/refresh/'
+            orginalRequest.url === baseURL + '/token/refresh/'
         ) {
             window.location.href = '/Signin';
             return Promise.reject(error);
