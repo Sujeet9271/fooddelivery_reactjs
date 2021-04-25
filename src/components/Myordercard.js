@@ -45,6 +45,9 @@ const MyOrdercard = ({ props }) => {
                             <div style={{ display: 'flex' }}>
                                 <h5 className="card-title">Delivery Address: </h5><h6 className='ml-1 mt-1'>{props.delivery_address}</h6> 
                             </div>
+                            <div style={{ display: 'flex' }}>
+                                <h5 className="card-title">Rate Food: </h5><h6 className='ml-1 mt-1'>{props.delivery_address}</h6> 
+                            </div>
 
                             <div >
 
