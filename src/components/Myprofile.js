@@ -12,19 +12,14 @@ const Myprofile = () => {
         getprofile()
     }, []);
 
-    // const history = useHistory()
    
-    const [Address, setAddress] = useState({})
-
-    // const [loading, setLoading] = useState(false)
-    
     const [Profile, setProfile] = useState([])
-
+    const [Address, setAddress] = useState([])
     const getprofile = async () => {
 
 
         try {
-            const res = await axiosInstance.get('accounts/profile/')
+            const res = await axiosInstance.get('/accounts/profile/')
             console.log(res.data)
             setProfile(res.data)
             setAddress(res.data.profile)
@@ -36,17 +31,17 @@ const Myprofile = () => {
         
     }
 
-    // const initialData = Object.freeze({
-    //     username: formData.username,
-    //     firstname: formData.firstname,
-    //     lastname: formData.lastname,
-    //     email: formData.email,
-    //     address: '',
-    //     contact_number: ''
+    const initialData = Object.freeze({
+        username: '',
+        firstname: '',
+        lastname: '',
+        email:'',
+        address: '',
+        contact_number:''
 
-    // })
+    })
 
-    // const [Deliver_to, updateData] = useState(initialData);
+    // const [Profile, updateData] = useState(initialData);
 
 
     const handleSubmit = (e) => {
@@ -68,8 +63,6 @@ const Myprofile = () => {
         <div>
 
             <Container>
-
-
                 <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>UserName</Form.Label>

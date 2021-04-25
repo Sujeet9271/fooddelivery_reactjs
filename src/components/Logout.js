@@ -7,7 +7,7 @@ const Logout = () => {
     const history = useHistory();
 
     useEffect(()=>{
-    const response = axiosInstance.post ('accounts/logout/',{
+    const response = axiosInstance.post ('/accounts/logout/',{
         refresh_token: localStorage.getItem('refresh_token'),
     }).then((res) => {
         console.log(res)

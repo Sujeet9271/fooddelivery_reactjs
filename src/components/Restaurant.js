@@ -14,7 +14,6 @@ import { useHistory } from 'react-router';
 const Restaurant = () => {
     var history = useHistory();
     const id = history.location.state.id
-    console.log(id)
     useEffect(() => {
         getRestaurant(id)
     }, []);
@@ -24,7 +23,7 @@ const Restaurant = () => {
 
     const getRestaurant = async () => {
         try {
-            const res = await axiosInstance.get('cities/' + id + '/')
+            const res = await axiosInstance.get('/cities/' + id + '/')
             setRestaurant(res.data)
             setLoading(true)
         } catch (err) {
@@ -35,7 +34,7 @@ const Restaurant = () => {
 
     const VegOnly = async () => {
         try {
-            const res = await axiosInstance.get('cities/' + id + '/restaurant/veg_only/')
+            const res = await axiosInstance.get('/cities/' + id + '/restaurant/veg_only/')
             setRestaurant(res.data)
             setLoading(true)
         } catch (err) {
@@ -49,6 +48,9 @@ const Restaurant = () => {
 
           
             <Container>
+
+            <Button onClick={getRestaurant} className="mr-1">All</Button>
+            <Button onClick={VegOnly}>VegOnly</Button>
                 <Row>
                     {loading &&
                         restaurants.map((restaurant) => (

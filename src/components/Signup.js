@@ -47,7 +47,7 @@ const Signup = () => {
         console.log(formData);
 
 
-        axiosInstance.post(`accounts/register/`,{
+        axiosInstance.post(`/accounts/register/`,{
             username: formData.username,
             firstname: formData.firstname,
             lastname: formData.lastname,
@@ -71,25 +71,28 @@ const Signup = () => {
             <div className='signup'>
 
                 <form  className='signup_form' action=''>
-                    <h1>Create Account</h1>
-                    <div class="social-container">
-
+                    <h1><u>Create Account </u></h1>
+                    < br />
+                    < br />
+                    {/* <div class="social-container">
                         <a href="#" class="social"><i class="bi bi-facebook"></i></a>
                         <a href="#" class="social"><i class="fa fa-google"></i></a>
                         <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                     </div>
-                    <span>or use your email for registration</span>
+                    <span>or use your email for registration</span> */}
 
                     <input  type='text' name='username' placeholder="Username"  onChange={handleChange} />
 
                     < br />
                     <input  type='text' name='firstname' placeholder="First Name"  onChange={handleChange} />
                     < br />
-                    <input  type='text' name='lastname' placeholder="Last Name"  onChange={handleChange} />
+                    <input  type='text' name='lastname' placeholder="Last Name"  onChange={handleChange} /> 
+                    < br />
                     <input   type='text' name='email' placeholder="Email" onChange={handleChange} />
                     < br />
 
                     <input  type='password'  name='password' placeholder="Password" onChange={handleChange} />
+                    < br />
                     <input  type='password'  name='password1' placeholder=" Confirm Password" onChange={handleChange} />
 
                     <p>By clicking Sign Up, you agree to our Terms

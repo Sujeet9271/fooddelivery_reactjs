@@ -1,5 +1,7 @@
 import { Card, Button, Image } from 'react-bootstrap'
 import React from 'react'
+import baseURL from '../baseurl'
+
 import { useHistory } from 'react-router-dom';
 
 
@@ -19,7 +21,7 @@ const Cards = ({ city }) => {
         <>
             <Card className='my-3 p-3 rounded mr-5' key={city.id}>
                 <div style={{ display: "flex" }} >
-                    <Image style={{ width: "30%" }} src={`http://127.0.0.1:8000${city.image}`} roundedCircle />
+                    <Image style={{ width: "30%" }} src={`${baseURL}${city.image}`} roundedCircle />
                     <Card.Body>
                         <Card.Title>
                             <div style={{ display: "flex", marginBottom: '2%' }}>

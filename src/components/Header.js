@@ -21,6 +21,8 @@ const Header = () => {
 
     }, []);
 
+    const [searchTerm, setSearchTerm]= useState("");
+
 
     const [total_item, setTotal] = useState([])
 
@@ -28,7 +30,7 @@ const Header = () => {
 
 
         try {
-            const res = await axiosInstance.get('cart/')
+            const res = await axiosInstance.get('/cart/')
             const total = res.data.orders.length
             setTotal(total)
 
@@ -54,7 +56,10 @@ const Header = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav>
                             <Form inline>
-                                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                                <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={(event) => {
+                                    setSearchTerm(event.target.value);
+                                }} 
+                                 />
                                 <Button><SearchIcon /></Button>
                             </Form>
                         </Nav>

@@ -5,6 +5,8 @@ import { Container, Row, Col, Card, Image, Breadcrumb, Accordion } from 'react-b
 
 import Cards from './Categorycard';
 import { useHistory } from 'react-router';
+import baseURL from '../baseurl'
+
 
 
 
@@ -25,7 +27,7 @@ const Category = () => {
     const getCategory = async () => {
         try {
             const res = await axiosInstance.get('cities/' + history.location.state.city + '/restaurant/' + history.location.state.restaurant.id + '/')
-            setCategory(res.data.menu)
+            setCategory(res.data)
             setLoading(true)
         } catch (err) {
             alert(err.message);
@@ -41,7 +43,7 @@ const Category = () => {
             <br />
             <Card className='my-3 p-3 rounded mr-5' id={restaurant.id}>
                 <div style={{ display: "flex" }} >
-                    <Image style={{ width: "30%" }} src={`http://127.0.0.1:8000${restaurant.image}`} roundedCircle />
+                    <Image style={{ width: "30%" }} src={`${baseURL}${restaurant.image}`} roundedCircle />
                     <Card.Body>
                         <Card.Title>
                             <div style={{ display: "flex", marginBottom: '2%' }}>
@@ -61,20 +63,15 @@ const Category = () => {
                             </div>
                         </Card.Text>
                     </Card.Body>
-
                 </div>
-
-
             </Card>
-            
-        </Container>
-        <br />
+            <br />
             <h4>Menu:</h4>
             <br />
+        </Container>
+       
         <Accordion>
             {loading &&
-
-
                 categories.map((category) => (
                     <Container>
                         <Row>

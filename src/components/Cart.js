@@ -26,7 +26,7 @@ const Cart = () => {
 
 
         try {
-            const res = await axiosInstance.get('cart/')
+            const res = await axiosInstance.get('/cart/')
             setCart(res.data)
             setLoading(true)
 

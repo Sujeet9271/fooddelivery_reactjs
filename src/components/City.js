@@ -19,7 +19,8 @@ const City = () => {
 
     const getCity = async () => {
         try {
-            const res = await axiosInstance.get('cities/')
+            const res = await axiosInstance.get('/cities/')
+            console.log(res.data)
             setCity(res.data)
             setLoading(true)
         } catch (err) {

@@ -1,6 +1,8 @@
 import { Card, Button, Image } from 'react-bootstrap'
 import React, { useState } from 'react'
 import axiosInstance from '../axios'
+import baseURL from '../baseurl'
+
 // import { useShoppingCart } from "use-shopping-cart"
 
 
@@ -23,6 +25,7 @@ const Menu = ({ props }) => {
 
 
 
+
         })
     }
 
@@ -30,7 +33,7 @@ const Menu = ({ props }) => {
         <>
             <Card className='my-3 p-3 rounded h-60'>
                 <div style={{ display: 'flex' }}>
-                    <Image style={{ width: '10%', height: '10%' }} src={`http://127.0.0.1:8000${props.image}`} thumbnail />
+                    <Image style={{ width: '10%', height: '10%' }} src={`${baseURL}${props.image}`} thumbnail />
                     <Card.Body >
                         <Card.Title>
                             <div style={{ display: "flex", marginBottom: '2%' }}>
@@ -48,6 +51,7 @@ const Menu = ({ props }) => {
                     </Card.Body>
 
                     {added ?
+                    
                         <Button style={{ width: '20%', height: '5%', marginTop: '10%' }} variant="success"> Added To cart</Button>
                          :
                         <Button

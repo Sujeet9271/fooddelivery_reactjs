@@ -2,14 +2,14 @@ import { Card, Button, Image } from 'react-bootstrap'
 import React, { useState } from 'react'
 import axiosInstance from '../axios'
 
+import baseURL from '../baseurl'
 
 
 
 const MyOrdercard = ({ props }) => {
-    console.log('date:', props.created[0, 9])
-    console.log('time:', props.created[11, 15])
 
-    const ReOrder = (e) => {
+        console.log('props',props)
+     const ReOrder = (e) => {
         console.log('Order again')
     }
 
@@ -18,8 +18,9 @@ const MyOrdercard = ({ props }) => {
     return (
         <>
             <Card className='my-3 p-3 rounded'>
+            
                 <div style={{ display: 'flex' }}>
-                    <Image style={{ width: '15%', height:'15%' }} varinat='top' src={`http://127.0.0.1:8000${props.image}`} />
+                    <Image style={{ width: '15%', height:'15%' }} varinat='top' src={`${baseURL}${props.image}`} />
                     <Card.Body>
                         <Card.Title>
                             {props.itemname}({props.restaurant_name})
@@ -39,7 +40,10 @@ const MyOrdercard = ({ props }) => {
                             </div>
                             <div style={{ display: 'flex' }}>
                                 <h5 className="card-title">Status: </h5><h6 className='ml-1 mt-1'>{props.status}</h6> 
+                            </div>
 
+                            <div style={{ display: 'flex' }}>
+                                <h5 className="card-title">Delivery Address: </h5><h6 className='ml-1 mt-1'>{props.delivery_address}</h6> 
                             </div>
 
                             <div >

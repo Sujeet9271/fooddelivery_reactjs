@@ -2,6 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { Button, Container, Form, Table, Image } from 'react-bootstrap'
 import { useHistory } from 'react-router';
 import axiosInstance from '../axios'
+import baseURL from '../baseurl'
+
 
 const Placeorder = () => {
     useEffect(() => {
@@ -19,14 +21,17 @@ const Placeorder = () => {
 
 
         try {
-            const res = await axiosInstance.get('cart/place_order/')
+            const res = await axiosInstance.get('/cart/place_order/')
+            console.log(res.data)
             setCart(res.data.cart)
             setAddress(res.data.address)
             setLoading(true)
             var totalprice = 0
+            var p = []
             for (var i = 0;i<res.data.cart.length;i++){
                 totalprice =totalprice +  res.data.cart[i].price
-            }    
+              
+            }
             setTotal(totalprice)
         } catch (err) {
             alert(err.message);
@@ -45,8 +50,9 @@ const Placeorder = () => {
 
     const handleSubmit = (e) => {
         console.log(Deliver_to)
-        axiosInstance.post('cart/place_order/',Deliver_to).then((res) => {
-            alert(res.data)            
+        axiosInstance.post('/cart/place_order/',Deliver_to).then((res) => {
+            alert(res.data)
+            console.log(res.data)            
             history.push('/MyOrders')
         })
     }
@@ -74,10 +80,10 @@ const Placeorder = () => {
                     {loading && cart.map((item) => (
                         <>
                             <tr id={item.id}>
-                            {console.log(item.image)}
+                            {console.log(item)}
                                 <td>{item.restaurant_name}</td>
-                                <td><Image style={{ width: "10%" }} src={`http://127.0.0.1:8000${item.image}` } />{item.itemname}</td>
-                                <td>{item.quantity}</td>
+                                <td><Image style={{ width: "10%" }} src={`${baseURL}${item.image}` } />{item.itemname}</td>
+                                <td>{item.quantity} X {item.price/item.quantity} </td>
                                 <td>{item.price}</td>
                             </tr>
 

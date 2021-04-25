@@ -1,6 +1,7 @@
 import { Card, Button, Image } from 'react-bootstrap'
 import React, { useEffect, useState } from 'react'
 import axiosInstance from '../axios'
+import baseURL from '../baseurl'
 
 
 
@@ -8,11 +9,10 @@ import axiosInstance from '../axios'
 const Cartcard = ({ props }) => {
 
     const [num, setnum] = useState(props.quantity)
-    console.log(props)
    
 
     const Removefromcart = (e) => {
-        axiosInstance.get('cart/' + props.id + '/').then((res) => {
+        axiosInstance.get('/cart/' + props.id + '/').then((res) => {
             window.location.reload()
             
                     })
@@ -26,7 +26,7 @@ const Cartcard = ({ props }) => {
         else {
             setnum(num - 1)
             props.quantity--
-            axiosInstance.patch('cart/', [{
+            axiosInstance.patch('/cart/', [{
                 id: props.id,
                 quantity: props.quantity
             }]).then((res) => {
@@ -41,7 +41,7 @@ const Cartcard = ({ props }) => {
     const increment = (e) => {
         setnum(num + 1)
         props.quantity++
-        axiosInstance.patch('cart/', [{
+        axiosInstance.patch('/cart/', [{
             id: props.id,
             quantity: props.quantity
         }]).then((res) => {
@@ -54,7 +54,7 @@ const Cartcard = ({ props }) => {
         <>
             <Card className='my-3 p-3 rounded'>
                 <div style={{ display: 'flex' }}>
-                    <Image style={{ width: '30%' }} src={`http://127.0.0.1:8000${props.image}`} thumbnail />
+                    <Image style={{ width: '30%' }} src={`${baseURL}${props.image}`} thumbnail />
                     <Card.Body >
                         <Card.Title>
                             <div style={{ display: "flex", marginBottom: '2%' }}>

@@ -25,7 +25,7 @@ const MyOrders = () => {
 
 
         try {
-            const res = await axiosInstance.get('myorders/')
+            const res = await axiosInstance.get('/myorders/')
             console.log(res.data)
             setOrder(res.data)
             setLoading(true)
