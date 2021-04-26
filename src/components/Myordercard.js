@@ -3,16 +3,25 @@ import React, { useState } from 'react'
 import axiosInstance from '../axios'
 
 import baseURL from '../baseurl'
+import { useHistory } from 'react-router'
 
 
 
 const MyOrdercard = ({ props }) => {
 
-        console.log('props',props)
-     const ReOrder = (e) => {
-        console.log('Order again')
-    }
+    const [added, setadd] = useState(false)
+    const history = useHistory()
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('reorder',props.id)
+        axiosInstance.post('/reorder/', {
+            id: props.id          
+        }).then((res) => {
+            history.push('/Cart')
+        })
+    }
+    
 
 
     return (
@@ -55,7 +64,7 @@ const MyOrdercard = ({ props }) => {
 
 
                         </Card.Text>
-                        <Button onClick={ReOrder} style={{float:'right' ,width:'20%'}}>ReOrder</Button>
+                        <Button onClick={handleSubmit} style={{float:'right' ,width:'20%'}}>ReOrder</Button>
 
                     </Card.Body>
                 </div>

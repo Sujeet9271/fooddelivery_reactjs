@@ -22,10 +22,6 @@ const Menu = ({ props }) => {
         }]).then((res) => {
             setadd(true)
             console.log(res.data)
-
-
-
-
         })
     }
 
