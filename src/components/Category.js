@@ -85,11 +85,11 @@ const Category = () => {
             </Card.Body>
           </div>
         </Card>
+      <br /><h4 style={{justifyContent:'center'}}>Menu:</h4>
       <br />
 
       </Container>
-      <h4 style={{justifyContent:'center'}}>Menu:</h4>
-      <br />
+      
       <Accordion>
         {loading &&
           categories.map((category) => (
