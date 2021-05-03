@@ -5,7 +5,7 @@ import Menu from './Menucard'
 
 
 
-const Subcategory = ({ props }) => {
+const Subcategory = ({ props,cart }) => {
 
 
   return (
@@ -18,7 +18,8 @@ const Subcategory = ({ props }) => {
       <Accordion.Collapse eventKey={props.id}>
         <Card.Body>
           {props.menu.map((menu) => (
-            <Menu props={menu} />
+            <Menu props={menu} cart={cart}  />
+
           ))
 
           }

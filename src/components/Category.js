@@ -12,7 +12,7 @@ import baseURL from '../baseurl'
 
 
 
-const Category = () => {
+const Category = ({getCart}) => {
     const history = useHistory();
 
     const restaurant = history.location.state.restaurant
@@ -27,6 +27,7 @@ const Category = () => {
     const getCategory = async () => {
         try {
             const res = await axiosInstance.get('cities/' + history.location.state.city + '/restaurant/' + history.location.state.restaurant.id + '/')
+           
             setCategory(res.data)
             setLoading(true)
         } catch (err) {
@@ -39,9 +40,9 @@ const Category = () => {
 
 
     return (<Fragment>
-        <Container>
+        <Container className='p-5'>
             <br />
-            <Card className='my-3 p-3 rounded mr-5' id={restaurant.id}>
+            <Card className='my-3 p-3 rounded mr-5'>
                 <div style={{ display: "flex" }} >
                     <Image style={{ width: "30%" }} src={`${baseURL}${restaurant.image}`} roundedCircle />
                     <Card.Body>
@@ -65,22 +66,16 @@ const Category = () => {
                     </Card.Body>
                 </div>
             </Card>
-            <br />
             <h4>Menu:</h4>
-            <br />
         </Container>
        
         <Accordion>
             {loading &&
                 categories.map((category) => (
                     <Container>
-                        <Row>
-
-                            <Col>
-                                <Cards props={category} key={category.id} />
-                            </Col>
-
-                        </Row>
+                        
+                                <Cards props={category} key={category.id} re={getCategory} cart={getCart} />
+                            
                     </Container>
 
                 ))

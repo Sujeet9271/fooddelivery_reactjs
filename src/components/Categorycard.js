@@ -6,7 +6,7 @@ import Subcategory from './Subcategory';
 
 
 
-const Cards = ({ props }) => {
+const Cards = ({ props,cart}) => {
 
   return (
 
@@ -20,7 +20,7 @@ const Cards = ({ props }) => {
 
           <Accordion defaultActiveKey="0">
             {props.sub_category.map((subcategory) => (
-              <Subcategory props={subcategory} />
+              <Subcategory props={subcategory} cart={cart}  />
             ))
 
             }

@@ -24,8 +24,8 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {    
-    "server": "react-scripts start",
-    "start":"node server.js",    
+    "start": "react-scripts start",
+    "server":"node server.js",    
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

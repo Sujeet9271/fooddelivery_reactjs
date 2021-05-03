@@ -1,88 +1,97 @@
-import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom';
-import axiosInstance from '../axios';
-import './Signin.css'
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import axiosInstance from "../axios";
+import "./Signin.css";
 
 const Signin = () => {
+  const history = useHistory();
+  const initialFormData = Object.freeze({
+    email: "",
+    password: "",
+  });
 
+  const [formData, updateFormData] = useState(initialFormData);
 
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
 
-    const history = useHistory();
-    const initialFormData = Object.freeze({
+      //trimimg any whitespace
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
 
-        email: '',
-        password: '',
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axiosInstance
+      .post("/accounts/login/", {
+        email: formData.email,
+        password: formData.password,
+      })
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("access_token", res.data.access);
+        localStorage.setItem("refresh_token", res.data.refresh);
+        axiosInstance.defaults.headers["Authorization"] =
+          "JWT " + localStorage.getItem("access_token");
+        history.push("/City");
+      });
+  };
 
+  return (
+    <div className=" signin_body">
+      <div classname="signin">
+        <form className="signin_form" onSubmit={handleSubmit}>
+          <h1>
+            <u> SignIn</u>
+          </h1>
+          <br />
+          <br />
 
-    })
-
-    const [formData, updateFormData] = useState(initialFormData);
-
-    const handleChange = (e) => {
-        updateFormData({
-            ...formData,
-
-            //trimimg any whitespace
-            [e.target.name]: e.target.value.trim(),
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axiosInstance.post('/accounts/login/', {
-            email: formData.email,
-            password: formData.password
-        })
-            .then((res) => {
-                console.log(res.data)
-                localStorage.setItem('access_token', res.data.access);
-                localStorage.setItem('refresh_token', res.data.refresh);
-                axiosInstance.defaults.headers['Authorization'] =
-                    'JWT ' + localStorage.getItem('access_token');
-                history.push('/City');
-
-            })
-    }
-
-
-
-
-    return (
-        <div className=" signin_body">
-            <div classname="signin">
-                <form className='signin_form'>
-                    <h1> <u> SignIn</u></h1>
-                    < br />
-                    < br />
-               
-                    {/* <div class="social-container">
+          {/* <div class="social-container">
                         <a href="#" class="social"><i class="bi bi-facebook"></i></a>
                         <a href="#" class="social"><i class="fa fa-google"></i></a>
                         <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
                     </div>
                     <span>or use your email to login</span> */}
 
-                    <input autoComplete='email' type='text' name='email' placeholder="Email" onChange={handleChange} />
+          <input
+            autoComplete="email"
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+          />
 
-                    < br />
-                    <input autoComplete='password' type='password' name='password' placeholder="Password" onChange={handleChange} />
+          <br />
+          <input
+            autoComplete="password"
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+          />
+          <br />
+          <Link to="/Forgotpassword">
+            <h5>forgot password?</h5>
+          </Link>
+          <br />
+          <button type='submit' className="Signin__Button">
+            SignIn
+          </button>
+          <br />
 
-                 
-                    <Link to='/Forgotpassword'>
-                        <h5>forgot password?</h5>
-                    </Link>
-                    < br />
-                    <button onClick={handleSubmit} className='Signin__Button'>SignIn</button>
-                    < br />
-                   
-                    <p> Don't have an Account? <Link to="/Signup"><u> Create now</u></Link></p>
-                </form>
+          <p>
+           
+            Don't have an Account?
+            <Link to="/Signup">
+              <u>Create Your Account</u>
+            </Link>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-
-
-            </div>
-        </div>
-    )
-}
-
-export default Signin
+export default Signin;

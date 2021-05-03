@@ -1,14 +1,13 @@
 import { Card, Button, Image } from 'react-bootstrap'
 import React from 'react'
-import { Contactless } from '@material-ui/icons'
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import baseURL from '../baseurl'
 
 
 
 
 
-const Cards = ({ restaurant }) => {
+const Cards = ({ restaurant, re }) => {
 
   const history = useHistory();
   const city = history.location.state.id
@@ -16,13 +15,14 @@ const Cards = ({ restaurant }) => {
 
   const handleSubmit = () => {
     history.push({ pathname: '/Menu', state: { city: city, restaurant: restaurant } })
+    re();
   }
 
 
 
   return (
     <>
-      <Card className='my-3 p-3 rounded mr-5' id={restaurant.id}>
+      <Card className='my-3 p-3 rounded mr-5' style={{ width: '24rem' }} >
         <div style={{ display: "flex" }} >
           <Image style={{ width: "30%" }} src={`${baseURL}${restaurant.image}`} roundedCircle />
           <Card.Body>
@@ -46,7 +46,6 @@ const Cards = ({ restaurant }) => {
           </Card.Body>
 
         </div>
-        <br></br>
         <Button
           onClick={handleSubmit}
           style={{ borderRadius: '20px' }}

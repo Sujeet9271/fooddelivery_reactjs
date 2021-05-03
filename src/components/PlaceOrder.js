@@ -52,7 +52,6 @@ const Placeorder = () => {
         console.log(Deliver_to)
         axiosInstance.post('/cart/place_order/',Deliver_to).then((res) => {
             alert(res.data)
-            console.log(res.data)            
             history.push('/MyOrders')
         })
     }
@@ -74,7 +73,7 @@ const Placeorder = () => {
                 <th>Restaurant</th>
                 <th>Item</th>
                 <th>Quantity</th>
-                <th>Price</th>
+                <th>Price(Rs.)</th>
 
                 <tbody>
                     {loading && cart.map((item) => (

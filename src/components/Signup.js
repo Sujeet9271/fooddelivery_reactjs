@@ -53,8 +53,7 @@ const Signup = () => {
             lastname: formData.lastname,
             email: formData.email,
             password: formData.password,
-            confirm: formData.password1,
-            
+            confirm: formData.password1,          
           
         })
         .then((res)=> {
