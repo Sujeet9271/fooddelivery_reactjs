@@ -26,7 +26,7 @@ const City = ({getCart}) => {
   };
 
   return (
-    <Container className="p-5">
+    <Container className="p-5"><h3>Select City</h3>
       <Row>
         {loading &&
           cities.map((city) => (

@@ -1,4 +1,4 @@
-import { Card, Button, Image } from "react-bootstrap";
+import { Card, Button, Image, Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../axios";
 import baseURL from "../baseurl";
@@ -30,10 +30,12 @@ const Cartcard = ({ props, re, cart }) => {
         ])
         .then((res) => {
           re();
+          e.preventDefault();
         });
     }
   };
   const increment = (e) => {
+    e.preventDefault();
     setnum(num + 1);
     props.quantity++;
     axiosInstance
@@ -45,6 +47,7 @@ const Cartcard = ({ props, re, cart }) => {
       ])
       .then((res) => {
         re();
+        e.preventDefault();
       });
   };
 
@@ -64,39 +67,37 @@ const Cartcard = ({ props, re, cart }) => {
               </div>
             </Card.Title>
             <Card.Text>
-              <h5 className="card-text" style={{ marginLeft: "10px" }}>
-                {props.category}
-              </h5>
-              <div style={{ display: "flex", marginBottom: "2%" }}>
+              <Container style={{ display: "flex", marginBottom: "2%" }}>
                 <h5 className="card-text" style={{ marginLeft: "10px" }}>
                   Price:
-                </h5>{" "}
+                </h5>
                 {props.price}
+              </Container>
+
+              <Container style={{ display: "flex", marginBottom: "2%" }}>
                 <h5 className="card-text" style={{ marginLeft: "10px" }}>
                   Quantity:
                 </h5>
-                <div style={{ display: "flex" }}>
-                  <Button onClick={decrement}>-</Button>
-                  <input
-                    type="text"
-                    name="quantity"
-                    value={num}
-                    min="1"
-                    size="1"
-                    id="quantity"
-                  />
-                  <Button onClick={increment}>+</Button>
-                </div>
-              </div>
+                <Button onClick={decrement}>-</Button>
+                <input
+                  type="number"
+                  name="quantity"
+                  value={props.quantity}
+                  size="1"
+                  readOnly
+                />
+                <Button onClick={increment}>+</Button>
+              </Container>
             </Card.Text>
             <Button
               onClick={Removefromcart}
-              style={{ width: "100%", justifyContent: "bottom" }}
+              style={{ width: "10rem", justifyContent: "right" }}
               variant="danger"
             >
               Remove from Cart
             </Button>
           </Card.Body>
+          
         </div>
       </Card>
     </>

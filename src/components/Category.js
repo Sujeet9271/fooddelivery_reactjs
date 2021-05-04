@@ -40,9 +40,9 @@ const Category = ({getCart}) => {
 
 
     return (<Fragment>
-        <Container className='p-5'>
-            <br />
-            <Card className='my-3 p-3 rounded mr-5'>
+        <Container className='pt-5'>
+            
+            <Card style={{ width: '75vw',border:'none' }}>
                 <div style={{ display: "flex" }} >
                     <Image style={{ width: "30%" }} src={`${baseURL}${restaurant.image}`} roundedCircle />
                     <Card.Body>
@@ -66,7 +66,7 @@ const Category = ({getCart}) => {
                     </Card.Body>
                 </div>
             </Card>
-            <h4>Menu:</h4>
+            <h4 className='p-5'>Menu:</h4>
         </Container>
        
         <Accordion>

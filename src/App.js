@@ -4,7 +4,7 @@ import Home from "./components/Home";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Forgotpassword from "./components/Forgotpassword";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import City from "./components/City";
 import Logout from "./components/Logout";
 import Restaurant from "./components/Restaurant";
@@ -44,16 +44,16 @@ function App() {
         <Switch>
           <Route exact path="/PlaceOrder">
             <Header getCart={getCart} total_item={total_item} />
-            <PlaceOrder  />
+            <PlaceOrder />
           </Route>
 
           <Route exact path="/MyOrders">
-            <Header getCart={getCart} total_item={total_item}  />
+            <Header getCart={getCart} total_item={total_item} />
             <MyOrders getCart={getCart} total_item={total_item} />
           </Route>
 
           <Route exact path="/Myprofile">
-            <Header getCart={getCart} total_item={total_item}  />
+            <Header getCart={getCart} total_item={total_item} />
             <Myprofile />
           </Route>
 
@@ -96,6 +96,7 @@ function App() {
             <Header />
             <Home />
           </Route>
+          <Redirect from = '/' to = '/Home' />
         </Switch>
       </div>
     </Router>

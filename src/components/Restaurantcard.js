@@ -22,7 +22,7 @@ const Cards = ({ restaurant, re }) => {
 
   return (
     <>
-      <Card className='my-3 p-3 rounded mr-5' style={{ width: '24rem' }} >
+      <Card className='my-3 p-3 rounded mr-5' style={{ width: '20rem' }} >
         <div style={{ display: "flex" }} >
           <Image style={{ width: "30%" }} src={`${baseURL}${restaurant.image}`} roundedCircle />
           <Card.Body>

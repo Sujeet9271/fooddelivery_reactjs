@@ -16,26 +16,26 @@ const Signin = () => {
     updateFormData({
       ...formData,
 
-      //trimimg any whitespace
       [e.target.name]: e.target.value.trim(),
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axiosInstance
-      .post("/accounts/login/", {
+    try {
+      const res = await axiosInstance.post("/accounts/login/", {
         email: formData.email,
         password: formData.password,
-      })
-      .then((res) => {
-        console.log(res.data);
-        localStorage.setItem("access_token", res.data.access);
-        localStorage.setItem("refresh_token", res.data.refresh);
-        axiosInstance.defaults.headers["Authorization"] =
-          "JWT " + localStorage.getItem("access_token");
-        history.push("/City");
       });
+      localStorage.setItem("access_token", res.data.access);
+      localStorage.setItem("refresh_token", res.data.refresh);
+      axiosInstance.defaults.headers["Authorization"] =
+        "JWT " + localStorage.getItem("access_token");
+      history.push("/City");
+    } catch (err) {
+      console.log(err.response)
+      alert(err.response.data);
+    }
   };
 
   return (
@@ -76,13 +76,12 @@ const Signin = () => {
             <h5>forgot password?</h5>
           </Link>
           <br />
-          <button type='submit' className="Signin__Button">
+          <button type="submit" className="Signin__Button">
             SignIn
           </button>
           <br />
 
           <p>
-           
             Don't have an Account?
             <Link to="/Signup">
               <u>Create Your Account</u>

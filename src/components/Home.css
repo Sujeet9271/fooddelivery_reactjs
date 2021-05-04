@@ -3,6 +3,7 @@
     height:100vh;
     max-width: 100%;   
     position: 'fixed';
+    overflow: hidden;
     
 }
 

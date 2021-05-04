@@ -15,7 +15,7 @@ const Cards = ({ city, re }) => {
 
   return (
     <>
-      <Card className="my-3 p-3 rounded mr-5" style={{ width: '25rem' }}>
+      <Card className="my-3 p-3 rounded mr-5" style={{ width: '18rem' }}>
         <div style={{ display: "flex" }}>
           <Image
             style={{ width: "30%" }}

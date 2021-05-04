@@ -1,35 +1,21 @@
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,600');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 
-/* 
-.signup_body {
-	background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
-	height: 97.75vh;
-	overflow-y: hidden;
-} */
 
 .signup_body {
-	overflow-y: hidden; /* Hide vertical scrollbar */
-  overflow-x: hidden;
-}
-
-.signup {
 	background: #f6f5f7;
-	display: flex;
-	width:100%;
+	display:flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
-	margin: -20px -20 100px;
+	overflow-y: scroll; /* Hide vertical scrollbar */
+	overflow-x: hidden;
+	
 }
+
 
 
 
@@ -72,9 +58,8 @@ button.ghost {
 	padding: 0 60px ;
 	min-height: 80vh;
 	text-align: center;
-	width: 29%;
-	overflow-x: hidden;
-	
+	width: 100%;
+	overflow-y: hidden;
 }
 
 input {
