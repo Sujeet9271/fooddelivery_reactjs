@@ -44,14 +44,15 @@ const Menu = ({ props, cart }) => {
                 </h5>{" "}
                 <h6 className="mt-1 lm-1">Rs.{props.price}</h6>
               </div>
-              <div style={{ display: "flex", marginBottom: "2%" }}>
+              { (props.description==='') ? null : <div style={{ display: "flex", marginBottom: "2%" }}>
                 <h5 className="card-text" style={{ marginLeft: "10px" }}>
                   Description:
                 </h5>
                 <h6 className="mt-1 lm-1">
                   <i>{props.description}</i>
                 </h6>
-              </div>
+              </div> }
+              
             </Card.Text>
             {added ? (
             <h6 style={{ float:'right'}}>Added to cart</h6>
