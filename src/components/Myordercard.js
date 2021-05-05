@@ -44,6 +44,7 @@ const MyOrdercard = ({ order }) => {
               {order.itemname}({order.restaurant_name})
             </Card.Title>
             <Card.Text>
+            
               <div style={{ display: "flex" }}>
                 <h5 className="card-title">Price: Rs.</h5>
                 <h6 className="mt-1">{order.price}</h6>

@@ -10,6 +10,7 @@ const Home = () => {
 
   return (
     <div>
+    
         <Image className="home__image"
           src={home}
         />

@@ -20,6 +20,7 @@ import axiosInstance from "./axios";
 
 function App() {
   const access_token = localStorage.getItem("access_token");
+
   useEffect(() => {
     if (access_token) {
       getCart();
@@ -43,37 +44,37 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/PlaceOrder">
-            <Header getCart={getCart} total_item={total_item} />
-            <PlaceOrder />
+            <Header total_item={total_item} />
+            <PlaceOrder gCart={getCart} />
           </Route>
 
           <Route exact path="/MyOrders">
-            <Header getCart={getCart} total_item={total_item} />
-            <MyOrders getCart={getCart} total_item={total_item} />
+            <Header total_item={total_item} />
+            <MyOrders />
           </Route>
 
           <Route exact path="/Myprofile">
-            <Header getCart={getCart} total_item={total_item} />
+            <Header total_item={total_item} />
             <Myprofile />
           </Route>
 
           <Route exact path="/City">
-            <Header getCart={getCart} total_item={total_item} />
+            <Header total_item={total_item} />
             <City getCart={getCart} />
           </Route>
 
           <Route exact path="/Restaurant">
-            <Header getCart={getCart} total_item={total_item} />
+            <Header total_item={total_item} />
             <Restaurant />
           </Route>
 
           <Route exact path="/Cart">
-            <Header getCart={getCart} total_item={total_item} />
-            <Cart Ocart={getCart} total_item={total_item} />
+            <Header total_item={total_item} />
+            <Cart Ocart={getCart} />
           </Route>
 
           <Route exact path="/Menu">
-            <Header getCart={getCart} total_item={total_item} />
+            <Header total_item={total_item} />
             <Category getCart={getCart} />
           </Route>
 

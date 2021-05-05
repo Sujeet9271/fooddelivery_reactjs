@@ -5,7 +5,7 @@ import axiosInstance from '../axios'
 import baseURL from '../baseurl'
 
 
-const Placeorder = () => {
+const Placeorder = ({gCart}) => {
     useEffect(() => {
         getCart()
     }, []);
@@ -22,7 +22,6 @@ const Placeorder = () => {
 
         try {
             const res = await axiosInstance.get('/cart/place_order/')
-            console.log(res.data)
             setCart(res.data.cart)
             setAddress(res.data.address)
             setLoading(true)
@@ -49,9 +48,9 @@ const Placeorder = () => {
 
 
     const handleSubmit = (e) => {
-        console.log(Deliver_to)
         axiosInstance.post('/cart/place_order/',Deliver_to).then((res) => {
             alert(res.data)
+            gCart();
             history.push('/MyOrders')
         })
     }

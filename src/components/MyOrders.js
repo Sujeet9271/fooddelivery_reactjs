@@ -3,7 +3,7 @@ import { Col, Container, Row, Card, Spinner } from "react-bootstrap";
 import axiosInstance from "../axios";
 import MyOrdercard from "./Myordercard";
 
-const MyOrders = ({ getCart }) => {
+const MyOrders = () => {
   useEffect(() => {
     getMyOrders();
   }, []);
@@ -14,11 +14,9 @@ const MyOrders = ({ getCart }) => {
   const [total_item, setTotalItem] = useState([]);
 
   const getMyOrders = async () => {
-          getCart();
 
     try {
       const res = await axiosInstance.get("/myorders/");
-      console.log(res.data);
       setOrder(res.data);
       setLoading(true);
       setTotal(res.data.total_price);

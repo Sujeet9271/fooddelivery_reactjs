@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button, Spinner } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import axiosInstance from "../axios";
 import "./Signin.css";
@@ -11,6 +12,7 @@ const Signin = () => {
   });
 
   const [formData, updateFormData] = useState(initialFormData);
+  const [process, setProcess] = useState(false);
 
   const handleChange = (e) => {
     updateFormData({
@@ -21,19 +23,21 @@ const Signin = () => {
   };
 
   const handleSubmit = async (e) => {
+    setProcess(true);
     e.preventDefault();
     try {
       const res = await axiosInstance.post("/accounts/login/", {
         email: formData.email,
         password: formData.password,
       });
+      setProcess(false)
       localStorage.setItem("access_token", res.data.access);
       localStorage.setItem("refresh_token", res.data.refresh);
       axiosInstance.defaults.headers["Authorization"] =
         "JWT " + localStorage.getItem("access_token");
       history.push("/City");
     } catch (err) {
-      console.log(err.response)
+      setProcess(false)
       alert(err.response.data);
     }
   };
@@ -41,7 +45,7 @@ const Signin = () => {
   return (
     <div className=" signin_body">
       <div classname="signin">
-        <form className="signin_form" onSubmit={handleSubmit}>
+        <form className="signin_form">
           <h1>
             <u> SignIn</u>
           </h1>
@@ -76,9 +80,18 @@ const Signin = () => {
             <h5>forgot password?</h5>
           </Link>
           <br />
-          <button type="submit" className="Signin__Button">
-            SignIn
-          </button>
+          <Button onClick={handleSubmit}>
+            {process && (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            )}
+            Login
+          </Button>
           <br />
 
           <p>

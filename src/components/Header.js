@@ -14,7 +14,7 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 
-const Header = ({ getCart, total_item }) => {
+const Header = ({ total_item }) => {
 
   const access_token = localStorage.getItem("access_token");
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,11 +23,11 @@ const Header = ({ getCart, total_item }) => {
   if (access_token) {
 
     const handleChange = (e) => {
-      console.log(e.target.value);
-  
+      e.preventDefault();
       setSearchTerm(e.target.value);
     };
     const navDropdownTitle = <AccountCircleIcon className="profile__1" />;
+
     return (
       <Container style={{ marginBottom: "5%" }}>
         <Navbar
@@ -68,7 +68,7 @@ const Header = ({ getCart, total_item }) => {
               </NavDropdown>
               <Nav.Link href="/Cart">
                 <div className="header_optionBasket">
-                  <ShoppingBasketIcon re={getCart} />
+                  <ShoppingBasketIcon />
                   <span className=" header__optionLineTwo header__basketCount">
                     {total_item}
                   </span>

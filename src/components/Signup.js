@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axiosInstance from "../axios";
 import { useHistory } from "react-router-dom";
 import "./Signup.css";
+import { Button, Spinner } from "react-bootstrap";
 
 const Signup = () => {
   // const [name, setName] = useState('');
@@ -18,6 +19,8 @@ const Signup = () => {
   //     setAllEntry([...allEntry, newEntry])
 
   // }
+
+  const [process, setProcess] = useState(false);
 
   const history = useHistory();
   const initialFormData = Object.freeze({
@@ -41,21 +44,22 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
+    setProcess(true)
     e.preventDefault();
     try {
-      const res = await axiosInstance.post('/accounts/register/', {
+      const res = await axiosInstance.post("/accounts/register/", {
         username: formData.username,
         firstname: formData.firstname,
         lastname: formData.lastname,
         email: formData.email,
         password: formData.password,
         confirm: formData.password1,
-      });      
-        alert(res.data)  
-        history.push('/Signin');
- 
+      });
+      alert(res.data);
+      history.push("/Signin");
     } catch (err) {
-      console.log(err.response)
+      setProcess(false)
+      console.log(err.response);
       alert(err.response.data);
     }
   };
@@ -121,10 +125,19 @@ const Signup = () => {
           />
 
           <p>By clicking Sign Up, you agree to our Terms</p>
-          <button className="signup__button" onClick={handleSubmit}>
-            Create Your Account
-          </button>
-          <p>
+          <Button onClick={handleSubmit}>
+            {process && (
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            )}
+            Sign Up
+          </Button>
+          <p className="mt-3">
             Already have an Account?{" "}
             <Link to="/Signin">
               <u>SignIn</u>

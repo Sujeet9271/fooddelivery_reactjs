@@ -6,7 +6,7 @@ import { Row, Container, CardDeck, Spinner } from "react-bootstrap";
 import Cards from "./Card";
 import { LaptopWindows } from "@material-ui/icons";
 
-const City = ({ getCart }) => {
+const City = ({getCart}) => {
   useEffect(() => {
     getCity();
   }, []);
@@ -15,9 +15,9 @@ const City = ({ getCart }) => {
   const [loading, setLoading] = useState(false);
 
   const getCity = async () => {
+    getCart()
     try {
       const res = await axiosInstance.get("/cities/");
-      getCart();
       setCity(res.data);
       setLoading(true);
     } catch (err) {
