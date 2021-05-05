@@ -2,7 +2,9 @@ import { Card, Button, Image, Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../axios";
 import baseURL from "../baseurl";
-import Cart from "./Cart";
+import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
 
 const Cartcard = ({ props, re, cart }) => {
   const [num, setnum] = useState(props.quantity);
@@ -69,33 +71,39 @@ const Cartcard = ({ props, re, cart }) => {
             <Card.Text>
               <Container style={{ display: "flex", marginBottom: "2%" }}>
                 <h5 className="card-text" style={{ marginLeft: "10px" }}>
+                  Quantity:
+                </h5>
+                <Container style={{ display: "flex", marginBottom: "2%" }}>
+                  <Button onClick={decrement} variant="light">
+                    <IndeterminateCheckBoxIcon />
+                  </Button>
+                  {/* <input
+                    type="number"
+                    value={props.quantity}
+                    size="1"
+                    style={{ width: "3vw" }}
+                    readOnly
+                  /> */}
+                  <Card style={{width:'30px',justifyContent:'space-evenly'}}>{props.quantity}</Card>
+                  <Button onClick={increment} variant="light">
+                    <AddBoxIcon />
+                  </Button>
+                </Container>
+              </Container>
+              <Container style={{ display: "flex", marginBottom: "2%" }}>
+                <h5 className="card-text" style={{ marginLeft: "10px" }}>
                   Price:
                 </h5>
                 {props.price}
               </Container>
-
-              <Container style={{ display: "flex", marginBottom: "2%" }}>
-                <h5 className="card-text" style={{ marginLeft: "10px" }}>
-                  Quantity:
-                </h5>
-                <Button onClick={decrement}>-</Button>
-                <input
-                  type="number"
-                  name="quantity"
-                  value={props.quantity}
-                  size="1"
-                  readOnly
-                />
-                <Button onClick={increment}>+</Button>
-              </Container>
             </Card.Text>
             <Button
-              onClick={Removefromcart}
-              style={{ width: "10rem", justifyContent: "right" }}
-              variant="danger"
-            >
-              Remove from Cart
-            </Button>
+            onClick={Removefromcart}
+            style={{ float: "right" }}
+            variant="danger"
+          >
+            <RemoveShoppingCartIcon />
+          </Button>
           </Card.Body>
           
         </div>

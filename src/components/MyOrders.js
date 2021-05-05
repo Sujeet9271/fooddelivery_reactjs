@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Col, Container, Row, Card } from "react-bootstrap";
+import { Col, Container, Row, Card, Spinner } from "react-bootstrap";
 import axiosInstance from "../axios";
 import MyOrdercard from "./Myordercard";
 
@@ -29,6 +29,7 @@ const MyOrders = ({ getCart }) => {
   };
   return (
     <Fragment>
+    
       <Container className='p-5'>
         <br />
         <h3 style={{ textAlign: "center" }}>Your Orders</h3>
@@ -40,14 +41,13 @@ const MyOrders = ({ getCart }) => {
             <br />
           </div>
           <div style={{ display: "flex" }}>
-            <h5>Total Expenditure on Food: Rs.</h5>
-            <h6 className="mt-1">{total}</h6>
+            <h5>Total Expenditure on Food:</h5>
+            <h6 className="mt-1"> Rs.{total}</h6>
             <br />
           </div>
         </Card>
       </Container>
-
-      {loading &&
+      {loading ?
         order.orders.map((item) => (
           <Container>
             <Row>
@@ -56,7 +56,17 @@ const MyOrders = ({ getCart }) => {
               </Col>
             </Row>
           </Container>
-        ))}
+        )):
+        <Container
+            style={{ position: "relative", justifyContent: "space-around" }}
+          >
+            <Spinner animation="grow" variant="primary" />
+            <Spinner animation="grow" variant="secondary" />
+            <Spinner animation="grow" variant="success" />
+            <Spinner animation="grow" variant="danger" />
+            <Spinner animation="grow" variant="warning" />
+            <Spinner animation="grow" variant="info" />
+          </Container>}
     </Fragment>
   );
 };

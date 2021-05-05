@@ -9,7 +9,7 @@ const Cards = ({ city, re }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push({ pathname: "/Restaurant", state: { id: city.id } });
+    history.push({ pathname: "/Restaurant", state: { city:city } });
     re();
   };
 

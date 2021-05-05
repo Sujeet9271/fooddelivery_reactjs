@@ -10,7 +10,7 @@ import baseURL from '../baseurl'
 const Cards = ({ restaurant, re }) => {
 
   const history = useHistory();
-  const city = history.location.state.id
+  const city = history.location.state.city
 
 
   const handleSubmit = () => {

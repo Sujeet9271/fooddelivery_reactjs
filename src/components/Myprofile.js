@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form, Spinner } from "react-bootstrap";
 import axiosInstance from "../axios";
 
 const Myprofile = () => {
   const [Profile, setProfile] = useState([]);
   const [Address, setAddress] = useState([]);
+  const [loading,setLoading] = useState(false);
   useEffect(() => {
     getprofile();
   }, []);
@@ -15,6 +16,7 @@ const Myprofile = () => {
       console.log(res.data);
       setProfile(res.data);
       setAddress(res.data.profile);
+      setLoading(true)
     } catch (err) {
       alert(err.message);
     }
@@ -45,70 +47,81 @@ const Myprofile = () => {
   };
 
   return (
-    <div>
-      <Container className="p-5">
-        <Form>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>UserName</Form.Label>
-            <Form.Control
-              type="text"
-              name="username"
-              placeholder={Profile.username}
-              readOnly
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              placeholder={Profile.email}
-              readOnly
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>FirstName</Form.Label>
-            <Form.Control
-              type="text"
-              name="firstname"
-              placeholder={Profile.firstname}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>LastName</Form.Label>
-            <Form.Control
-              type="text"
-              name="lastname"
-              placeholder={Profile.lastname}
-              onChange={handleChange}
-            />
-          </Form.Group>
+    <>
+    {loading ? <Container className="p-5">
+    <Form>
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>UserName</Form.Label>
+        <Form.Control
+          type="text"
+          name="username"
+          placeholder={Profile.username}
+          readOnly
+        />
+      </Form.Group>
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type="email"
+          name="email"
+          placeholder={Profile.email}
+          readOnly
+        />
+      </Form.Group>
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>FirstName</Form.Label>
+        <Form.Control
+          type="text"
+          name="firstname"
+          placeholder={Profile.firstname}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>LastName</Form.Label>
+        <Form.Control
+          type="text"
+          name="lastname"
+          placeholder={Profile.lastname}
+          onChange={handleChange}
+        />
+      </Form.Group>
 
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Address</Form.Label>
-            <Form.Control
-              type="text"
-              name="address"
-              placeholder={Address.address}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Contact No.</Form.Label>
-            <Form.Control
-              type="text"
-              name="contact_number"
-              placeholder={Address.contact_number}
-              onChange={handleChange}
-            />
-          </Form.Group>
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>Address</Form.Label>
+        <Form.Control
+          type="text"
+          name="address"
+          placeholder={Address.address}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>Contact No.</Form.Label>
+        <Form.Control
+          type="text"
+          name="contact_number"
+          placeholder={Address.contact_number}
+          onChange={handleChange}
+        />
+      </Form.Group>
 
-          <Button onClick={handleSubmit}>update</Button>
-        </Form>
-      </Container>
-    </div>
-  );
+      <Button onClick={handleSubmit}>update</Button>
+    </Form>
+  </Container>: <Container
+            style={{ position: "relative", justifyContent: "space-around" }}
+          >
+            <Spinner animation="grow" variant="primary" />
+            <Spinner animation="grow" variant="secondary" />
+            <Spinner animation="grow" variant="success" />
+            <Spinner animation="grow" variant="danger" />
+            <Spinner animation="grow" variant="warning" />
+            <Spinner animation="grow" variant="info" />
+          </Container>}
+    
+  
+  </>
+  )
 };
 
 export default Myprofile;

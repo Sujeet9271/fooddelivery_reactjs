@@ -1,7 +1,8 @@
-import { Card, Button, Image } from "react-bootstrap";
+import { Card, Button, Image, ButtonGroup } from "react-bootstrap";
 import React, { useState } from "react";
 import axiosInstance from "../axios";
 import baseURL from "../baseurl";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 
 const Menu = ({ props, cart }) => {
   const [added, setadd] = useState(false);
@@ -52,24 +53,21 @@ const Menu = ({ props, cart }) => {
                 </h6>
               </div>
             </Card.Text>
-          </Card.Body>
-
-          { added ? (
-            <Button
-              style={{ width: "20%", height: "5%", marginTop: "10%" }}
-              variant="success"
-            >
-              Added To cart
-            </Button>
+            {added ? (
+            <h6 style={{ float:'right'}}>Added to cart</h6>
           ) : (
-            <Button
-              onClick={handleSubmit}
-              style={{ width: "20%", height: "5%", marginTop: "10%" }}
-              variant="primary"
-            >
-              Add to Cart
+            <Button onClick={handleSubmit} style={{float:'right' }} variant='light'>
+              <span>
+                <AddShoppingCartIcon
+                  style={{ marginTop: "10%" }}
+                  fontSize="large"
+                />
+              </span>
             </Button>
           )}
+          </Card.Body>
+
+          
         </div>
       </Card>
     </>
