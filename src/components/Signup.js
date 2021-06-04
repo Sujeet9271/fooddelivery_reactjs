@@ -59,8 +59,19 @@ const Signup = () => {
       history.push("/Signin");
     } catch (err) {
       setProcess(false)
-      console.log(err.response);
-      alert(err.response.data);
+      if(err.response.data['email']&&err.response.data['username']){
+        alert('User with following credentials already exists \n username : '+formData.username+'\n email        : '+formData.email)
+    } 
+      else if (err.response.data['email']){
+        alert('User with following credentials already exists \n email : '+formData.email)
+      } 
+      else if (err.response.data['username']){
+        alert('User with following credentials already exists \n username : '+formData.username)
+      } 
+      else if (err.response.data['password']){
+        alert(err.response.data['password'])
+      }
+          
     }
   };
 
@@ -85,6 +96,7 @@ const Signup = () => {
             name="username"
             placeholder="Username"
             onChange={handleChange}
+            required
           />
 
           <br />
@@ -107,6 +119,7 @@ const Signup = () => {
             name="email"
             placeholder="Email"
             onChange={handleChange}
+            required
           />
           <br />
 
@@ -115,6 +128,7 @@ const Signup = () => {
             name="password"
             placeholder="Password"
             onChange={handleChange}
+            required
           />
           <br />
           <input
@@ -122,10 +136,13 @@ const Signup = () => {
             name="password1"
             placeholder=" Confirm Password"
             onChange={handleChange}
+            required
           />
 
           <p>By clicking Sign Up, you agree to our Terms</p>
           <Button onClick={handleSubmit}>
+            
+            Sign Up
             {process && (
               <Spinner
                 as="span"
@@ -135,7 +152,6 @@ const Signup = () => {
                 aria-hidden="true"
               />
             )}
-            Sign Up
           </Button>
           <p className="mt-3">
             Already have an Account?{" "}
